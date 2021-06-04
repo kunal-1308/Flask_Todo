@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+<title>Task Master</title>
+<style>
+    body{
+font-family: 'Oswald', sans-serif;
+font-size: large;
+    align-items: center;
+    background-color: #cccccc;
+}
+table{
+    border: thin;
+}
+table, th, td {
+    border: 1px solid black;
+}
+h1{
+    align-items: center;
+}
+tr{
+    padding: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+td{
+    text-align: center;
+    padding: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px; */
+
+}
+form{
+    margin-top: 20px;
+}
+#content{
+    width: 19%;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class = "content" align="center">
+    <h1>
+        Update Task
+    </h1>
+
+    <div class="form">
+        <form action="/update/{{task.id}}" method="POST">
+        <input type="text" name ="content" id ="content" value="{{task.content}}">
+        <input type="submit" value="Add Task">
+    </form>
+    </div>
+</div>
+
+{% endblock %}

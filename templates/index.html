@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+<title>Task Master</title>
+<style>
+    body{
+font-family: 'Oswald', sans-serif;
+
+    align-items: center;
+   background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h4{
+    align-items: center;
+    font-size: large;
+}
+table{
+    border: 1px ridge black;
+    /* border: thin; */
+    border-radius: 9px;
+}
+table, th, td {
+
+  /* border: 1px ridge black; */
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 40px;
+
+}
+h1{
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+tr{
+     /* border: 1px ridge black; */
+    padding: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    border-radius: 5px;
+}
+td{
+     border: 1px ridge black;
+    border-radius: 9px;
+    text-align: center;
+    padding: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px; */
+
+}
+form{
+    margin-top: 20px;
+}
+#content{
+    width: 19%;
+}
+input{background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-color: #06e2ff2f; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 9px;
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class = "content" align="center">
+    <h1>
+        Task Master
+    </h1>
+    {% if tasks|length < 1 %}
+    <h4>There are no tasks! Create One Below.</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <form action="/" method="POST">
+        <input type="text" name ="content" id ="content" >
+        <input type="submit" value="Add Task" style="border-radius: 9px;">
+    </form>
+</div>
+
+{% endblock %}
